@@ -27,9 +27,12 @@ for i in range(len(got_houses)):
 
 # Acrescentar a coluna das contagens ao dataframe
 got_houses["totalMembers"] = total_members
+
+# Ordenar pelo total de membros de cada casa do maior para o menor
 got_houses = got_houses.sort_values(by="totalMembers", ascending=False)
 print(got_houses)
 
+# Gráfico circular com as 8 casas com maior número de membros
 fig, ax = plt.subplots(figsize=(24,12))
 count, houses, pct = plt.pie(got_houses.head(8).totalMembers, labels=got_houses.head(8).name, autopct='%.0f%%')
 plt.setp(pct, size=14, weight="bold", color="white")
