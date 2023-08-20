@@ -31,24 +31,22 @@ def arithmetic_arranger(problems, show_results=False):
 
         length = (max(len(first_number), len(second_number)) + 2)
 
-        if problem != problems[-1]:
-            first_row += ' ' * (length - len(first_number)) + first_number \
-                + '    '
-            second_row += operator + ' ' * (length - len(second_number) - 1) \
-                + second_number + '    '
-            lines += '-' * length + '    '
-        else:
-            first_row += ' ' * (length - len(first_number)) + first_number
-            second_row += operator + ' ' * (length - len(second_number) - 1) \
-                + second_number
-            lines += '-' * length
-
         if operator == "+":
             result = int(first_number) + int(second_number)
         else:
             result = int(first_number) - int(second_number)
 
-        results += ' ' * (length - len(str(result))) + str(result) + '    '
+        first_row += ' ' * (length - len(first_number)) + first_number
+        second_row += operator + ' ' * (length - len(second_number) - 1) \
+            + second_number
+        lines += '-' * length
+        results += ' ' * (length - len(str(result))) + str(result)
+
+        if problem != problems[-1]:
+            first_row += '    '
+            second_row += '    '
+            lines += '    '
+            results += '    '
 
     if show_results:
         arranged_problems = first_row + "\n" + second_row + "\n" + lines \
