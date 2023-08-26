@@ -1,7 +1,7 @@
 def add_time(start_time, duration_time, day_week=None):
     days_of_the_week = ["Monday", "Tuesday", "Wednesday", "Thursday",
                         "Friday", "Saturday", "Sunday"]
-    result = ""
+    new_time = ""
 
     # Check if start_time has hr:min format
     if len(start_time.split(":")) != 2:
@@ -70,20 +70,20 @@ def add_time(start_time, duration_time, day_week=None):
 
     end_time = str(end_hours) + ":" + str(end_minutes) + " " + period
 
-    result += end_time
+    new_time += end_time
 
     if day_week:
         if day_week.capitalize().strip() not in days_of_the_week:
             return "Invalid day of the week."
-        result += (", " + day_week.capitalize().strip())
+        new_time += (", " + day_week.capitalize().strip())
 
     if days_later > 1:
-        result += (" (" + str(days_later) + " days later)")
+        new_time += (" (" + str(days_later) + " days later)")
 
     if days_later == 1:
-        result += " (next day)"
+        new_time += " (next day)"
 
-    return result
+    return new_time
 
 
 print(add_time("3:00 PM", "3:10"))
