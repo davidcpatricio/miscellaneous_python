@@ -1,4 +1,4 @@
-def add_time(start_time, duration_time, day_week=None):
+def add_time(start_time, duration_time, day=None):
     days_of_the_week = ["Monday", "Tuesday", "Wednesday", "Thursday",
                         "Friday", "Saturday", "Sunday"]
     new_time = ""
@@ -72,14 +72,23 @@ def add_time(start_time, duration_time, day_week=None):
 
     new_time += end_time
 
-    if day_week:
-        if day_week.capitalize().strip() not in days_of_the_week:
+    if day:
+        formatted_day = day.capitalize().strip()
+        if formatted_day not in days_of_the_week:
             return "Invalid day of the week."
-        new_time += (", " + day_week.capitalize().strip())
+
+        day_week = days_of_the_week.index(formatted_day)
+
+        if days_later:
+            day_week += days_later
+            if day_week > 7:
+                day_week %= 7
+
+        formatted_day = days_of_the_week[day_week]
+        new_time += (", " + formatted_day)
 
     if days_later > 1:
         new_time += (" (" + str(days_later) + " days later)")
-
     if days_later == 1:
         new_time += " (next day)"
 
