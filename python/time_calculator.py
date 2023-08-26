@@ -81,7 +81,7 @@ def add_time(start_time, duration_time, day=None):
 
         if days_later:
             day_week += days_later
-            if day_week > 7:
+            if day_week >= 7:
                 day_week %= 7
 
         formatted_day = days_of_the_week[day_week]
