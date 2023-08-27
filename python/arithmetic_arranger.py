@@ -6,7 +6,7 @@ def arithmetic_arranger(problems, show_results=False):
     length = 0
     arranged_problems = ""
 
-    if len(problems) > 4:
+    if len(problems) > 5:
         return "Error: Too many problems."
 
     for problem in problems:
@@ -24,10 +24,7 @@ def arithmetic_arranger(problems, show_results=False):
             return "Error: Numbers cannot be more than four digits."
 
         if operator not in "+-" or len(operator) != 1:
-            if operator in '*/':
-                return "Invalid operator."
-            else:
-                return "Error: Operator must be '+' or '-'."
+            return "Error: Operator must be '+' or '-'."
 
         length = (max(len(first_number), len(second_number)) + 2)
 
