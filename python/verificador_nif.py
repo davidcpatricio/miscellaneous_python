@@ -10,7 +10,7 @@ if nif == nif[0] * len(nif):
     print('NIF inválido.')
     sys.exit()
 
-primeiros_oito_digitos = nif[:9]
+primeiros_oito_digitos = nif[:8]
 contador = 9
 soma = 0
 
