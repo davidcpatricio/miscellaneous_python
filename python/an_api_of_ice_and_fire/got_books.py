@@ -20,7 +20,7 @@ got_books["characterCount"] = character_count
 print(got_books)
 
 # Gráfico de barras com o número de personagens por livro
-fig, ax = plt.subplots(figsize=(24,6))
+fig, ax = plt.subplots(figsize=(24, 6))
 sns.barplot(data=got_books, x="name", y="characterCount")
 for item in ax.get_xticklabels():
     item.set_rotation(45)
