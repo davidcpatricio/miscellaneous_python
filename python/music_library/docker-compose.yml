@@ -1,0 +1,20 @@
+version: '3.9'
+services:
+  mysql_206:
+    env_file:
+      - .env
+    container_name: music_library
+    hostname: music_library
+    image: mysql:8
+    restart: always
+    command:
+      - --authentication-policy=mysql_native_password
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --innodb_force_recovery=0
+    volumes:
+      - ./music_library:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      TZ: Europe/Lisbon
