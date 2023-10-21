@@ -51,3 +51,99 @@ with connection:
             ')'
         )
         connection.commit()
+
+    with connection.cursor() as cursor:
+        cursor.execute(
+            'INSERT INTO artist (name) VALUES '
+            '("The Beatles"), '
+            '("Pink Floyd"), '
+            '("Taylor Swift"), '
+            '("ABBA"), '
+            '("Iron Maiden")'
+        )
+        cursor.execute(
+            'INSERT INTO album (name, artist_id) VALUES '
+            '("Abbey Road", (SELECT id FROM artist WHERE name = "The Beatles")), '
+            '("Revolver", (SELECT id FROM artist WHERE name = "The Beatles")), '
+            '("The Dark Side Of The Moon", (SELECT id FROM artist WHERE name = "Pink Floyd")), '
+            '("The Wall", (SELECT id FROM artist WHERE name = "Pink Floyd")), '
+            '("1989", (SELECT id FROM artist WHERE name = "Taylor Swift")), '
+            '("Arrival", (SELECT id FROM artist WHERE name = "ABBA")), '
+            '("The Number Of The Beast", (SELECT id FROM artist WHERE name = "Iron Maiden"))'
+        )
+        cursor.execute(
+            'INSERT INTO genre (name) VALUES '
+            '("Rock"), '
+            '("Heavy Metal"), '
+            '("Pop")'
+        )
+        cursor.execute(
+            'INSERT INTO song (name, artist_id, album_id, genre_id) VALUES '
+            '("Come Together" ,'
+            '(SELECT id FROM artist WHERE name = "The Beatles"), '
+            '(SELECT id FROM album WHERE name = "Abbey Road"), '
+            '(SELECT id FROM genre WHERE name = "Rock")'
+            '), '
+
+            '("Something", '
+            '(SELECT id FROM artist WHERE name = "The Beatles"), '
+            '(SELECT id FROM album WHERE name = "Abbey Road"), '
+            '(SELECT id FROM genre WHERE name = "Rock")'
+            '), '
+
+            '("Yellow Submarine", '
+            '(SELECT id FROM artist WHERE name = "The Beatles"), '
+            '(SELECT id FROM album WHERE name = "Revolver"), '
+            '(SELECT id FROM genre WHERE name = "Rock")'
+            '), '
+
+            '("Money", '
+            '(SELECT id FROM artist WHERE name = "Pink Floyd"), '
+            '(SELECT id FROM album WHERE name = "The Dark Side Of The Moon"), '
+            '(SELECT id FROM genre WHERE name = "Rock")'
+            '), '
+
+            '("Another Brick In The Wall (Part 2)", '
+            '(SELECT id FROM artist WHERE name = "Pink Floyd"), '
+            '(SELECT id FROM album WHERE name = "The Wall"), '
+            '(SELECT id FROM genre WHERE name = "Rock")'
+            '), '
+
+            '("Comfortably Numb", '
+            '(SELECT id FROM artist WHERE name = "Pink Floyd"), '
+            '(SELECT id FROM album WHERE name = "The Wall"), '
+            '(SELECT id FROM genre WHERE name = "Rock")'
+            '), '
+
+            '("Shake It Out" ,'
+            '(SELECT id FROM artist WHERE name = "Taylor Swift"), '
+            '(SELECT id FROM album WHERE name = "1989"), '
+            '(SELECT id FROM genre WHERE name = "Pop")'
+            '), '
+
+            '("Style" ,'
+            '(SELECT id FROM artist WHERE name = "Taylor Swift"), '
+            '(SELECT id FROM album WHERE name = "1989"), '
+            '(SELECT id FROM genre WHERE name = "Pop")'
+            '), '
+
+            '("Dancing Queen" ,'
+            '(SELECT id FROM artist WHERE name = "ABBA"), '
+            '(SELECT id FROM album WHERE name = "Arrival"), '
+            '(SELECT id FROM genre WHERE name = "Pop")'
+            '), '
+
+            '("The Number Of The Beast" ,'
+            '(SELECT id FROM artist WHERE name = "Iron Maiden"), '
+            '(SELECT id FROM album WHERE name = "The Number Of The Beast"), '
+            '(SELECT id FROM genre WHERE name = "Heavy Metal")'
+            '), '
+
+            '("Run To The Hills" ,'
+            '(SELECT id FROM artist WHERE name = "Iron Maiden"), '
+            '(SELECT id FROM album WHERE name = "The Number Of The Beast"), '
+            '(SELECT id FROM genre WHERE name = "Heavy Metal")'
+            ')'
+        )
+
+        connection.commit()
